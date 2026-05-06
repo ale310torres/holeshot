@@ -1,3 +1,4 @@
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
 diff --git a/src/App.jsx b/src/App.jsx
 index c8ceb38d228010283300f2804452d3fe8e84d509..8fac1d006084c1dd209defa447809e3e71b39232 100644
 --- a/src/App.jsx
@@ -477,4 +478,7 @@ index c8ceb38d228010283300f2804452d3fe8e84d509..8fac1d006084c1dd209defa447809e3e
      </div>
    );
  }
+ 
+EOF
+)
 
