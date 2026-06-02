@@ -2,13 +2,13 @@ export default function AboutPage() {
   return (
     <main className="page-shell narrow">
       <div className="page-title">
-        <p className="eyebrow">About Us</p>
-        <h1>Soporte real para riders y mecánicos</h1>
+        <p className="eyebrow">Sobre nosotros</p>
+        <h1>Soporte real para pilotos y mecánicos</h1>
       </div>
       <div className="prose-panel">
         <p>
-          Holeshot Power Parts nace para ayudar a riders, mecánicos y fanáticos
-          del off-road a conseguir las piezas correctas sin perder tiempo.
+          Holeshot Power Parts nace para ayudar a pilotos, mecánicos y fanáticos
+          de la ruta fuera de carretera a conseguir las piezas correctas sin perder tiempo.
           Sabemos lo importante que es tener tu motora, ATV o UTV corriendo
           fuerte, segura y lista para la próxima ruta.
         </p>
