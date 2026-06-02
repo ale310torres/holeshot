@@ -7,13 +7,13 @@ import "./logo.css";
 export const metadata: Metadata = {
   title: "Holeshot Power Parts | Piezas para motoras, ATVs y UTVs",
   description:
-    "Compra piezas OEM, reemplazo y alto rendimiento para motoras, motoras off-road, ATVs y UTVs. Busca por marca, modelo y año.",
+    "Compra piezas OEM, reemplazo y alto rendimiento para motoras, motoras fuera de carretera, ATVs y UTVs. Busca por marca, modelo y año.",
 };
 
 const nav = [
   ["Inicio", "/"],
   ["Tienda", "/shop"],
-  ["Motoras off-road", "/categorias#dirt"],
+  ["Motoras fuera de carretera", "/categorias#dirt"],
   ["ATVs", "/categorias#atv"],
   ["UTVs", "/categorias#utv"],
   ["Piezas OEM", "/categorias#oem"],
