@@ -2,7 +2,7 @@ export default function RequestPartPage() {
   return (
     <main className="page-shell narrow">
       <div className="page-title">
-        <p className="eyebrow">Request a Part</p>
+        <p className="eyebrow">Solicitar una pieza</p>
         <h1>¿No encuentras la pieza?</h1>
         <p>Envíanos marca, modelo, año y una foto. Te ayudamos a identificarla y conseguirla.</p>
       </div>
