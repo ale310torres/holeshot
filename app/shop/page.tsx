@@ -1,16 +1,14 @@
 import Link from "next/link";
+import ShopifyBuyButton from "../components/ShopifyBuyButton";
+import { formatMoney, getProducts } from "../../lib/shopify";
 
 const filters = ["Categoría", "Marca", "Vehículo", "Año", "Modelo", "Precio", "OEM / Aftermarket", "En stock"];
-const products = [
-  ["Pro Taper Chain & Sprocket Kit", "$189.99", "Performance", "En stock"],
-  ["Twin Air Performance Filter", "$39.99", "Maintenance", "En stock"],
-  ["Moose Racing Brake Pads", "$34.99", "Brakes", "Oferta"],
-  ["Wiseco Piston Kit", "$219.99", "Engine Parts", "En stock"],
-  ["All Balls Wheel Bearing Kit", "$48.99", "Drivetrain", "OEM fit"],
-  ["Renthal Handlebar Fatbar", "$109.99", "Controls", "En stock"],
-];
 
-export default function ShopPage() {
+export const revalidate = 300;
+
+export default async function ShopPage() {
+  const products = await getProducts(12);
+
   return (
     <main className="page-shell">
       <div className="page-title">
@@ -32,7 +30,7 @@ export default function ShopPage() {
         </aside>
         <section>
           <div className="sort-row">
-            <span>6 productos</span>
+            <span>{products.length} productos</span>
             <select aria-label="Ordenar productos">
               <option>Más vendidos</option>
               <option>Más recientes</option>
@@ -41,17 +39,30 @@ export default function ShopPage() {
             </select>
           </div>
           <div className="product-grid">
-            {products.map(([name, price, category, badge]) => (
-              <article className="product-card" key={name}>
-                <div className="product-image"><span>{category}</span></div>
+            {products.map((product) => (
+              <article className="product-card" key={product.id}>
+                <div className="product-image">
+                  {product.image ? (
+                    <img src={product.image.url} alt={product.image.altText} />
+                  ) : (
+                    <span>{product.productType || product.vendor || "Part"}</span>
+                  )}
+                </div>
                 <div className="product-copy">
-                  <small>{badge}</small>
-                  <h3>{name}</h3>
+                  <small>{product.availableForSale ? "En stock" : "Agotado"}</small>
+                  <h3>{product.title}</h3>
                   <div className="product-meta">
-                    <strong>{price}</strong>
-                    <span>4.8 rating</span>
+                    <strong>{formatMoney(product.price, product.currencyCode)}</strong>
+                    <span>{product.vendor || "Holeshot"}</span>
                   </div>
-                  <Link href="/producto/pro-taper-chain-kit">Add to Cart</Link>
+                  <div className="product-actions">
+                    <Link href={`/producto/${product.handle}`}>Ver producto</Link>
+                    <ShopifyBuyButton
+                      variantId={product.variantId}
+                      availableForSale={product.availableForSale}
+                      label="Comprar"
+                    />
+                  </div>
                 </div>
               </article>
             ))}
