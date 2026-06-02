@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import HeaderLogo from "./components/HeaderLogo";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Holeshot Power Parts | Piezas para Motoras, ATVs y UTVs",
+  title: "Holeshot Power Parts | Piezas para motoras, ATVs y UTVs",
   description:
-    "Compra piezas OEM, aftermarket y performance para motoras, dirt bikes, ATVs y UTVs. Busca por marca, modelo y año.",
+    "Compra piezas OEM, reemplazo y alto rendimiento para motoras, motoras off-road, ATVs y UTVs. Busca por marca, modelo y año.",
 };
 
 const nav = [
   ["Inicio", "/"],
-  ["Shop", "/shop"],
-  ["Dirt Bikes", "/categorias#dirt"],
+  ["Tienda", "/shop"],
+  ["Motoras off-road", "/categorias#dirt"],
   ["ATVs", "/categorias#atv"],
   ["UTVs", "/categorias#utv"],
-  ["OEM Parts", "/categorias#oem"],
-  ["Performance", "/categorias#performance"],
+  ["Piezas OEM", "/categorias#oem"],
+  ["Alto rendimiento", "/categorias#performance"],
   ["Ofertas", "/shop#ofertas"],
   ["Contacto", "/contacto"],
 ];
@@ -25,8 +26,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es">
       <body>
         <header className="site-header">
-          <Link className="brand" href="/">
-            <span className="brand-mark">HPP</span>
+          <Link className="brand" href="/" aria-label="Holeshot Power Parts">
+            <HeaderLogo />
             <span>Holeshot Power Parts</span>
           </Link>
           <nav className="nav" aria-label="Principal">
@@ -41,7 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               Buscar por vehículo
             </Link>
             <Link className="cart-button" href="/shop">
-              Cart
+              Carrito
             </Link>
           </div>
         </header>
@@ -49,11 +50,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="footer">
           <div>
             <strong>Holeshot Power Parts</strong>
-            <p>Performance, maintenance and OEM parts in one place.</p>
+            <p>Piezas de alto rendimiento, mantenimiento y OEM en un solo lugar.</p>
           </div>
           <div className="footer-links">
-            <Link href="/request-a-part">Request a Part</Link>
-            <Link href="/about">About Us</Link>
+            <Link href="/request-a-part">Solicitar una pieza</Link>
+            <Link href="/about">Sobre nosotros</Link>
             <Link href="/contacto">WhatsApp</Link>
           </div>
         </footer>
