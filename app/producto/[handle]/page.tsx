@@ -39,7 +39,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             {product.image ? (
               <img src={product.image.url} alt={product.image.altText} />
             ) : (
-              <span>{product.productType || product.vendor || "Performance Part"}</span>
+              <span>{product.productType || product.vendor || "Pieza de alto rendimiento"}</span>
             )}
           </div>
           <div className="thumb-row"><span /><span /><span /></div>
@@ -48,12 +48,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <p className="eyebrow">{product.vendor || "Holeshot"}</p>
           <h1>{product.title}</h1>
           <p className="price">{formatMoney(product.price, product.currencyCode)}</p>
-          <p>{product.description || "Pieza seleccionada para riders que quieren calidad, compatibilidad y confianza."}</p>
+          <p>{product.description || "Pieza seleccionada para pilotos que quieren calidad, compatibilidad y confianza."}</p>
           <dl className="spec-list">
             <div><dt>Disponibilidad</dt><dd>{product.availableForSale ? "En stock" : "Agotado"}</dd></div>
             <div><dt>Marca</dt><dd>{product.vendor || "Holeshot"}</dd></div>
-            <div><dt>Categoría</dt><dd>{product.productType || "Performance Parts"}</dd></div>
-            <div><dt>Tags</dt><dd>{product.tags.length ? product.tags.join(", ") : "Dirt Bike / ATV / UTV"}</dd></div>
+            <div><dt>Categoría</dt><dd>{product.productType || "Piezas de alto rendimiento"}</dd></div>
+            <div><dt>Etiquetas</dt><dd>{product.tags.length ? product.tags.join(", ") : "Motora / ATV / UTV"}</dd></div>
           </dl>
           <div className="buy-actions">
             <ShopifyBuyButton
@@ -66,12 +66,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </div>
       </section>
       <section className="fitment-table">
-        <h2>Fitment</h2>
+        <h2>Compatibilidad</h2>
         <table>
           <tbody>
             <tr><th>Compatibilidad</th><td>Confirma marca, modelo y año antes de ordenar.</td></tr>
-            <tr><th>Tipo</th><td>{product.tags.find((tag) => ["Dirt Bike", "ATV", "UTV", "Motorcycle"].includes(tag)) ?? "Off-road"}</td></tr>
-            <tr><th>Soporte</th><td>Escríbenos por WhatsApp si necesitas validar fitment.</td></tr>
+            <tr><th>Tipo</th><td>{product.tags.find((tag) => ["Dirt Bike", "ATV", "UTV", "Motorcycle"].includes(tag)) ?? "Fuera de carretera"}</td></tr>
+            <tr><th>Soporte</th><td>Escríbenos por WhatsApp si necesitas validar compatibilidad.</td></tr>
           </tbody>
         </table>
       </section>
