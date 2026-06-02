@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { formatMoney, getProducts } from "../lib/shopify";
 
 const categories = [
   "Dirt Bike Parts",
@@ -8,13 +9,6 @@ const categories = [
   "OEM Parts",
   "Performance Parts",
   "Maintenance Kits",
-];
-
-const products = [
-  ["Pro Taper Chain & Sprocket Kit", "$189.99", "4.9", "Fits Yamaha / Honda"],
-  ["Twin Air Performance Filter", "$39.99", "4.8", "Dirt Bike / ATV"],
-  ["NGK Iridium Spark Plug", "$14.99", "4.7", "OEM replacement"],
-  ["Moose Racing Brake Pads", "$34.99", "4.8", "ATV / UTV"],
 ];
 
 const brands = [
@@ -36,7 +30,11 @@ const brands = [
   "K&N",
 ];
 
-export default function Home() {
+export const revalidate = 300;
+
+export default async function Home() {
+  const products = await getProducts(4);
+
   return (
     <main>
       <section className="hero">
@@ -55,8 +53,8 @@ export default function Home() {
             Piezas para motoras, ATVs y UTVs. Performance, mantenimiento, OEM y
             aftermarket parts para riders que no se quedan a pie.
           </p>
-          <form className="search-panel">
-            <input placeholder="Busca por pieza, marca, modelo o número de parte" />
+          <form className="search-panel" action="/shop">
+            <input name="q" placeholder="Busca por pieza, marca, modelo o número de parte" />
             <button type="submit">Buscar</button>
           </form>
           <div className="hero-actions">
@@ -116,19 +114,23 @@ export default function Home() {
           <h2>Productos populares</h2>
         </div>
         <div className="product-grid">
-          {products.map(([name, price, rating, fitment], index) => (
-            <article className="product-card" key={name}>
+          {products.map((product) => (
+            <article className="product-card" key={product.id}>
               <div className="product-image">
-                <span>Part {index + 1}</span>
+                {product.image ? (
+                  <img src={product.image.url} alt={product.image.altText} />
+                ) : (
+                  <span>{product.productType || product.vendor || "Part"}</span>
+                )}
               </div>
               <div className="product-copy">
-                <small>{fitment}</small>
-                <h3>{name}</h3>
+                <small>{product.availableForSale ? "En stock" : "Agotado"}</small>
+                <h3>{product.title}</h3>
                 <div className="product-meta">
-                  <strong>{price}</strong>
-                  <span>{rating} rating</span>
+                  <strong>{formatMoney(product.price, product.currencyCode)}</strong>
+                  <span>{product.vendor || "Holeshot"}</span>
                 </div>
-                <Link href="/producto/pro-taper-chain-kit">Ver producto</Link>
+                <Link href={`/producto/${product.handle}`}>Ver producto</Link>
               </div>
             </article>
           ))}
