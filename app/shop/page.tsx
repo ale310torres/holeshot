@@ -2,7 +2,7 @@ import Link from "next/link";
 import ShopifyBuyButton from "../components/ShopifyBuyButton";
 import { formatMoney, getProducts } from "../../lib/shopify";
 
-const filters = ["Categoría", "Marca", "Vehículo", "Año", "Modelo", "Precio", "OEM / Aftermarket", "En stock"];
+const filters = ["Categoría", "Marca", "Vehículo", "Año", "Modelo", "Precio", "OEM / Reemplazo", "En stock"];
 
 export const revalidate = 300;
 
@@ -12,9 +12,9 @@ export default async function ShopPage() {
   return (
     <main className="page-shell">
       <div className="page-title">
-        <p className="eyebrow">Shop</p>
+        <p className="eyebrow">Tienda</p>
         <h1>Catálogo Holeshot</h1>
-        <p>Busca, filtra y compra piezas para motoras, ATVs, UTVs y side by sides.</p>
+        <p>Busca, filtra y compra piezas para motoras, ATVs, UTVs y vehículos lado a lado.</p>
       </div>
       <div className="catalog-layout">
         <aside className="filters">
@@ -45,7 +45,7 @@ export default async function ShopPage() {
                   {product.image ? (
                     <img src={product.image.url} alt={product.image.altText} />
                   ) : (
-                    <span>{product.productType || product.vendor || "Part"}</span>
+                    <span>{product.productType || product.vendor || "Pieza"}</span>
                   )}
                 </div>
                 <div className="product-copy">
