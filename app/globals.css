@@ -38,6 +38,11 @@ textarea {
   font: inherit;
 }
 
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
 .site-header {
   align-items: center;
   backdrop-filter: blur(18px);
@@ -109,7 +114,8 @@ textarea {
 .search-panel button,
 .finder-form button,
 .buy-actions button,
-.buy-actions a {
+.buy-actions a,
+.product-actions button {
   border: 0;
   cursor: pointer;
   display: inline-flex;
@@ -124,7 +130,8 @@ textarea {
 .primary-button,
 .search-panel button,
 .finder-form button,
-.buy-actions button:first-child {
+.buy-actions button:first-child,
+.product-actions button {
   background: var(--accent);
   color: white;
 }
@@ -345,8 +352,25 @@ p {
   display: flex;
   font-weight: 900;
   min-height: 210px;
+  overflow: hidden;
   padding: 18px;
+  position: relative;
   text-transform: uppercase;
+}
+
+.product-image img,
+.main-product-image img {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+}
+
+.product-image span,
+.main-product-image span {
+  position: relative;
+  z-index: 1;
 }
 
 .product-copy {
@@ -356,6 +380,7 @@ p {
 .product-meta {
   align-items: center;
   display: flex;
+  gap: 12px;
   justify-content: space-between;
   margin-bottom: 18px;
 }
@@ -365,6 +390,19 @@ p {
   font-size: 13px;
   font-weight: 900;
   text-transform: uppercase;
+}
+
+.product-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.product-actions button {
+  min-height: 40px;
+  padding: 11px 14px;
 }
 
 .trust-grid {
@@ -456,6 +494,9 @@ p {
   font-size: 28px;
   font-weight: 900;
   justify-content: center;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
   text-transform: uppercase;
 }
 
@@ -581,6 +622,11 @@ th {
   .buy-actions,
   .footer,
   .sort-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .product-actions {
     align-items: stretch;
     flex-direction: column;
   }
