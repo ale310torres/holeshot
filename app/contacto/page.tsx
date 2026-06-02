@@ -8,7 +8,7 @@ export default function ContactPage() {
       </div>
       <form className="finder-form">
         <label>Nombre<input placeholder="Tu nombre" /></label>
-        <label>Email<input placeholder="correo@ejemplo.com" /></label>
+        <label>Correo electrónico<input placeholder="correo@ejemplo.com" /></label>
         <label>WhatsApp<input placeholder="Número de WhatsApp" /></label>
         <label>Mensaje<textarea placeholder="Cuéntanos qué pieza necesitas" /></label>
         <button type="submit">Enviar mensaje</button>
