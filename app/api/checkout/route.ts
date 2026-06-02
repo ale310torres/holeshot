@@ -12,7 +12,8 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const variantId = typeof body.variantId === "string" ? body.variantId : "";
-    const quantity = Number.isInteger(body.quantity) ? body.quantity : 1;
+    const requestedQuantity = Number(body.quantity ?? 1);
+    const quantity = Number.isInteger(requestedQuantity) && requestedQuantity > 0 ? requestedQuantity : 1;
 
     if (!variantId) {
       return NextResponse.json({ error: "Falta el variantId del producto." }, { status: 400 });
