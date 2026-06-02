@@ -3,12 +3,12 @@ import Link from "next/link";
 import { formatMoney, getProducts } from "../lib/shopify";
 
 const categories = [
-  "Dirt Bike Parts",
-  "ATV Parts",
-  "UTV Parts",
-  "OEM Parts",
-  "Performance Parts",
-  "Maintenance Kits",
+  "Piezas para motoras off-road",
+  "Piezas para ATV",
+  "Piezas para UTV",
+  "Piezas OEM",
+  "Piezas de alto rendimiento",
+  "Kits de mantenimiento",
 ];
 
 const brands = [
@@ -40,18 +40,18 @@ export default async function Home() {
       <section className="hero">
         <Image
           src="/images/offroad-hero.png"
-          alt="Dirt bike and UTV riding through a rugged off-road trail"
+          alt="Motora off-road y UTV recorriendo una ruta fuerte"
           fill
           priority
           className="hero-image"
         />
         <div className="hero-shade" />
         <div className="hero-content">
-          <p className="eyebrow">OEM, aftermarket & performance parts</p>
+          <p className="eyebrow">Piezas OEM, reemplazo y alto rendimiento</p>
           <h1>Domina la ruta con las piezas correctas</h1>
           <p>
-            Piezas para motoras, ATVs y UTVs. Performance, mantenimiento, OEM y
-            aftermarket parts para riders que no se quedan a pie.
+            Piezas para motoras, ATVs y UTVs. Alto rendimiento, mantenimiento,
+            piezas OEM y reemplazos para pilotos que no se quedan a pie.
           </p>
           <form className="search-panel" action="/shop">
             <input name="q" placeholder="Busca por pieza, marca, modelo o número de parte" />
@@ -72,23 +72,23 @@ export default async function Home() {
       </section>
 
       <section className="vehicle-strip">
-        <span>Dirt Bike</span>
-        <span>Motorcycle</span>
+        <span>Motora off-road</span>
+        <span>Motora</span>
         <span>ATV</span>
         <span>UTV</span>
-        <span>Side by Side</span>
+        <span>Vehículo lado a lado</span>
       </section>
 
       <section className="section">
         <div className="section-heading">
-          <p className="eyebrow">Featured categories</p>
+          <p className="eyebrow">Categorías destacadas</p>
           <h2>Encuentra piezas por categoría</h2>
         </div>
         <div className="category-grid">
           {categories.map((category) => (
             <Link className="category-card" href="/categorias" key={category}>
               <span>{category}</span>
-              <small>Shop now</small>
+              <small>Ver productos</small>
             </Link>
           ))}
         </div>
@@ -110,7 +110,7 @@ export default async function Home() {
 
       <section className="section" id="ofertas">
         <div className="section-heading">
-          <p className="eyebrow">Best sellers</p>
+          <p className="eyebrow">Más vendidos</p>
           <h2>Productos populares</h2>
         </div>
         <div className="product-grid">
@@ -120,7 +120,7 @@ export default async function Home() {
                 {product.image ? (
                   <img src={product.image.url} alt={product.image.altText} />
                 ) : (
-                  <span>{product.productType || product.vendor || "Part"}</span>
+                  <span>{product.productType || product.vendor || "Pieza"}</span>
                 )}
               </div>
               <div className="product-copy">
@@ -139,7 +139,7 @@ export default async function Home() {
 
       <section className="request-band">
         <div>
-          <p className="eyebrow">Request a Part</p>
+          <p className="eyebrow">Solicita una pieza</p>
           <h2>¿No encuentras la pieza que necesitas?</h2>
           <p>
             Envíanos la marca, modelo, año y una foto de la pieza. Te ayudamos a
