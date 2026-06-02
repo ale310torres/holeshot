@@ -14,7 +14,7 @@ export default async function ProductPage() {
           <p className="eyebrow">Producto</p>
           <h1>Producto no encontrado</h1>
           <p>Revisa el catálogo o escríbenos para ayudarte a conseguir la pieza.</p>
-          <Link className="primary-button" href="/shop">Volver al shop</Link>
+          <Link className="primary-button" href="/shop">Volver a la tienda</Link>
         </div>
       </main>
     );
@@ -28,7 +28,7 @@ export default async function ProductPage() {
             {product.image ? (
               <img src={product.image.url} alt={product.image.altText} />
             ) : (
-              <span>{product.productType || product.vendor || "Performance Kit"}</span>
+              <span>{product.productType || product.vendor || "Kit de alto rendimiento"}</span>
             )}
           </div>
           <div className="thumb-row"><span /><span /><span /></div>
@@ -37,12 +37,12 @@ export default async function ProductPage() {
           <p className="eyebrow">{product.vendor || "Holeshot"}</p>
           <h1>{product.title}</h1>
           <p className="price">{formatMoney(product.price, product.currencyCode)}</p>
-          <p>{product.description || "Kit de drivetrain para riders que quieren respuesta fuerte, durabilidad y fitment confiable."}</p>
+          <p>{product.description || "Kit de transmisión para pilotos que quieren respuesta fuerte, durabilidad y compatibilidad confiable."}</p>
           <dl className="spec-list">
             <div><dt>Disponibilidad</dt><dd>{product.availableForSale ? "En stock" : "Agotado"}</dd></div>
             <div><dt>Marca</dt><dd>{product.vendor || "Holeshot"}</dd></div>
-            <div><dt>Categoría</dt><dd>{product.productType || "Performance Parts"}</dd></div>
-            <div><dt>Tags</dt><dd>{product.tags.length ? product.tags.join(", ") : "Dirt Bike / ATV / UTV"}</dd></div>
+            <div><dt>Categoría</dt><dd>{product.productType || "Piezas de alto rendimiento"}</dd></div>
+            <div><dt>Etiquetas</dt><dd>{product.tags.length ? product.tags.join(", ") : "Motora / ATV / UTV"}</dd></div>
           </dl>
           <div className="buy-actions">
             <ShopifyBuyButton
@@ -55,12 +55,12 @@ export default async function ProductPage() {
         </div>
       </section>
       <section className="fitment-table">
-        <h2>Fitment</h2>
+        <h2>Compatibilidad</h2>
         <table>
           <tbody>
             <tr><th>Compatibilidad</th><td>Confirma marca, modelo y año antes de ordenar.</td></tr>
-            <tr><th>Tipo</th><td>{product.tags.find((tag) => ["Dirt Bike", "ATV", "UTV", "Motorcycle"].includes(tag)) ?? "Off-road"}</td></tr>
-            <tr><th>Soporte</th><td>Escríbenos por WhatsApp si necesitas validar fitment.</td></tr>
+            <tr><th>Tipo</th><td>{product.tags.find((tag) => ["Dirt Bike", "ATV", "UTV", "Motorcycle"].includes(tag)) ?? "Fuera de carretera"}</td></tr>
+            <tr><th>Soporte</th><td>Escríbenos por WhatsApp si necesitas validar compatibilidad.</td></tr>
           </tbody>
         </table>
       </section>
