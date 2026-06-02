@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import HeaderLogo from "./components/HeaderLogo";
 import "./globals.css";
+import "./logo.css";
 
 export const metadata: Metadata = {
   title: "Holeshot Power Parts | Piezas para motoras, ATVs y UTVs",
