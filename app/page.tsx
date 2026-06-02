@@ -3,7 +3,7 @@ import Link from "next/link";
 import { formatMoney, getProducts } from "../lib/shopify";
 
 const categories = [
-  "Piezas para motoras off-road",
+  "Piezas para motoras fuera de carretera",
   "Piezas para ATV",
   "Piezas para UTV",
   "Piezas OEM",
@@ -40,7 +40,7 @@ export default async function Home() {
       <section className="hero">
         <Image
           src="/images/offroad-hero.png"
-          alt="Motora off-road y UTV recorriendo una ruta fuerte"
+          alt="Motora fuera de carretera y UTV recorriendo una ruta fuerte"
           fill
           priority
           className="hero-image"
@@ -72,7 +72,7 @@ export default async function Home() {
       </section>
 
       <section className="vehicle-strip">
-        <span>Motora off-road</span>
+        <span>Motora fuera de carretera</span>
         <span>Motora</span>
         <span>ATV</span>
         <span>UTV</span>
