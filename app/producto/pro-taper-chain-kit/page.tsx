@@ -1,27 +1,55 @@
 import Link from "next/link";
+import ShopifyBuyButton from "../../components/ShopifyBuyButton";
+import { formatMoney, getProductByHandle } from "../../../lib/shopify";
 
-export default function ProductPage() {
+export const revalidate = 300;
+
+export default async function ProductPage() {
+  const product = await getProductByHandle("pro-taper-chain-kit");
+
+  if (!product) {
+    return (
+      <main className="page-shell narrow">
+        <div className="page-title">
+          <p className="eyebrow">Producto</p>
+          <h1>Producto no encontrado</h1>
+          <p>Revisa el catálogo o escríbenos para ayudarte a conseguir la pieza.</p>
+          <Link className="primary-button" href="/shop">Volver al shop</Link>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main className="page-shell">
       <section className="product-detail">
         <div className="detail-gallery">
-          <div className="main-product-image">Performance Kit</div>
+          <div className="main-product-image">
+            {product.image ? (
+              <img src={product.image.url} alt={product.image.altText} />
+            ) : (
+              <span>{product.productType || product.vendor || "Performance Kit"}</span>
+            )}
+          </div>
           <div className="thumb-row"><span /><span /><span /></div>
         </div>
         <div className="detail-copy">
-          <p className="eyebrow">Pro Taper</p>
-          <h1>Chain & Sprocket Performance Kit</h1>
-          <p className="price">$189.99</p>
-          <p>Kit de drivetrain para riders que quieren respuesta fuerte, durabilidad y fitment confiable.</p>
+          <p className="eyebrow">{product.vendor || "Holeshot"}</p>
+          <h1>{product.title}</h1>
+          <p className="price">{formatMoney(product.price, product.currencyCode)}</p>
+          <p>{product.description || "Kit de drivetrain para riders que quieren respuesta fuerte, durabilidad y fitment confiable."}</p>
           <dl className="spec-list">
-            <div><dt>Disponibilidad</dt><dd>En stock</dd></div>
-            <div><dt>SKU</dt><dd>HPP-PT-428-001</dd></div>
-            <div><dt>Marca</dt><dd>Pro Taper</dd></div>
-            <div><dt>Compatibilidad</dt><dd>Yamaha / Honda dirt bike seleccionadas</dd></div>
+            <div><dt>Disponibilidad</dt><dd>{product.availableForSale ? "En stock" : "Agotado"}</dd></div>
+            <div><dt>Marca</dt><dd>{product.vendor || "Holeshot"}</dd></div>
+            <div><dt>Categoría</dt><dd>{product.productType || "Performance Parts"}</dd></div>
+            <div><dt>Tags</dt><dd>{product.tags.length ? product.tags.join(", ") : "Dirt Bike / ATV / UTV"}</dd></div>
           </dl>
           <div className="buy-actions">
-            <button>Add to Cart</button>
-            <button>Comprar ahora</button>
+            <ShopifyBuyButton
+              variantId={product.variantId}
+              availableForSale={product.availableForSale}
+              label="Comprar ahora"
+            />
             <Link href="/contacto">Preguntar por WhatsApp</Link>
           </div>
         </div>
@@ -30,10 +58,9 @@ export default function ProductPage() {
         <h2>Fitment</h2>
         <table>
           <tbody>
-            <tr><th>Marca</th><td>Yamaha, Honda</td></tr>
-            <tr><th>Modelo</th><td>YZ250F, CRF250R</td></tr>
-            <tr><th>Año</th><td>2018-2024</td></tr>
-            <tr><th>Tipo</th><td>Dirt Bike</td></tr>
+            <tr><th>Compatibilidad</th><td>Confirma marca, modelo y año antes de ordenar.</td></tr>
+            <tr><th>Tipo</th><td>{product.tags.find((tag) => ["Dirt Bike", "ATV", "UTV", "Motorcycle"].includes(tag)) ?? "Off-road"}</td></tr>
+            <tr><th>Soporte</th><td>Escríbenos por WhatsApp si necesitas validar fitment.</td></tr>
           </tbody>
         </table>
       </section>
