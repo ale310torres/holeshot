@@ -4,7 +4,7 @@ export default function VehicleSearchPage() {
   return (
     <main className="page-shell narrow">
       <div className="page-title">
-        <p className="eyebrow">Fitment finder</p>
+        <p className="eyebrow">Buscador de compatibilidad</p>
         <h1>Buscar por vehículo</h1>
         <p>Selecciona tu máquina para ver piezas compatibles y evitar compras incorrectas.</p>
       </div>
@@ -12,11 +12,11 @@ export default function VehicleSearchPage() {
         <label>
           Tipo de vehículo
           <select>
-            <option>Dirt Bike</option>
-            <option>Motorcycle</option>
+            <option>Motora off-road</option>
+            <option>Motora</option>
             <option>ATV</option>
             <option>UTV</option>
-            <option>Side by Side</option>
+            <option>Vehículo lado a lado</option>
           </select>
         </label>
         <label>
