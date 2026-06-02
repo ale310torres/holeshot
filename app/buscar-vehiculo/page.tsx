@@ -12,7 +12,7 @@ export default function VehicleSearchPage() {
         <label>
           Tipo de vehículo
           <select>
-            <option>Motora off-road</option>
+            <option>Motora fuera de carretera</option>
             <option>Motora</option>
             <option>ATV</option>
             <option>UTV</option>
